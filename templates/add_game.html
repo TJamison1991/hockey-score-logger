@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Game</title>
+</head>
+<body>
+    <h1>Add New Game</h1>
+
+    <form action="/add" method="POST">
+    
+        <label>Home Team:</label>
+        <input type="text" name="home_team" required>
+
+        <br><br>
+
+        <label>Away Team:</label>
+        <input type="text" name="away_team" required>
+
+        <br><br>
+
+        <label>Date Played:</label>
+        <input type="text" name="date_played" required>
+
+        <br><br>
+
+        <label>Status:</label>
+        <select name="status">
+            <option value="scheduled">Scheduled</option>
+            <option value="in_progress">In Progress</option>
+            <option value="final">Final</option>
+        </select>
+
+        <br><br>
+
+        <input type="submit" value="Add Game">
+
+    </form>
+
+    <br>
+    <a href="/">Back to Scoreboard</a>
+
+</body>
+</html>

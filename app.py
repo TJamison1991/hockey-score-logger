@@ -14,6 +14,25 @@ def home():
     games = cursor.fetchall()
     conn.close()
     return render_template("index.html", games=games)
+@app.route("/add", methods=["GET", "POST"])
+def add_game():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    if request.method == "POST":
+        home_team = request.form["home_team"]
+        away_team = request.form["away_team"]
+        date_played = request.form["date_played"]
+        status = request.form["status"]
+        cursor.execute("""
+            INSERT INTO games (home_team, away_team, home_score, away_score, date_played, status)
+            VALUES (?, ?, 0, 0, ?, ?)
+        """, (home_team, away_team, date_played, status))
+        conn.commit()
+        conn.close()
+        return redirect(url_for("home"))
+    else:
+        conn.close()
+        return render_template("add_game.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
