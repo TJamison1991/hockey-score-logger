@@ -14,6 +14,7 @@ def home():
     games = cursor.fetchall()
     conn.close()
     return render_template("index.html", games=games)
+
 @app.route("/add", methods=["GET", "POST"])
 def add_game():
     conn = sqlite3.connect(DB_PATH)
@@ -33,6 +34,25 @@ def add_game():
     else:
         conn.close()
         return render_template("add_game.html")
+    
+@app.route("/update/<game_id>", methods=["GET", "POST"])
+def update_game(game_id):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    if request.method == "POST":
+        home_score = request.form["home_score"]
+        away_score = request.form["away_score"]
+        status = request.form["status"]
+        cursor.execute("""
+            UPDATE games SET home_score = ?, away_score = ?, status = ? WHERE game_id = ?
+        """, (home_score, away_score, status, game_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for("home"))
+    else:
+        conn.close()
+        return render_template("update_game.html", game_id=game_id)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

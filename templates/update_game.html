@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Game</title>
+</head>
+<body>
+    <h1>Update Game</h1>
+
+    <form action = "/update/{{ game_id }}" method="POST">
+
+        <label>Home Score</label>
+        <input type="number" name="home_score" required>
+
+        <br><br>
+
+        <label>Away Score</label>
+        <input type="number" name="away_score" required>
+
+        <br><br>
+
+        <label>Status:</label>
+        <select name="status">
+            <option value="scheduled">Scheduled</option>
+            <option value="in_progress">In Progress</option>
+            <option value="final">Final</option>
+        </select>
+
+        <br><br>
+
+        <input type="submit" value="Update Game">
+
+    </form>
+
+    <br>
+    <a href="/">Back To Scoreboard</a>
+
+</body>
+</html>

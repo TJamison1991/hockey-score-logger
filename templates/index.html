@@ -10,6 +10,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th>Actions</th>
                 <th>Home Team</th>
                 <th>Away Team</th>
                 <th>Home Score</th>
@@ -21,6 +22,7 @@
         <tbody>
             {% for game in games %}
             <tr>
+                <td><a href="/update/{{ game[0] }}">Update</a></td>
                 <td>{{ game[1] }}</td>
                 <td>{{ game[2] }}</td>
                 <td>{{ game[3] }}</td>
