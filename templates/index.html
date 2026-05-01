@@ -22,7 +22,10 @@
         <tbody>
             {% for game in games %}
             <tr>
-                <td><a href="/update/{{ game[0] }}">Update</a></td>
+                <td>
+                <a href="/update/{{ game[0] }}">Update</a>
+                <a href="/delete/{{ game[0] }}">Delete</a>
+                </td>
                 <td>{{ game[1] }}</td>
                 <td>{{ game[2] }}</td>
                 <td>{{ game[3] }}</td>

@@ -52,7 +52,17 @@ def update_game(game_id):
     else:
         conn.close()
         return render_template("update_game.html", game_id=game_id)
-
+    
+@app.route("/delete/<game_id>", methods=["GET"])
+def delete_game(game_id):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""
+        DELETE FROM games WHERE game_id = ?
+    """, (game_id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.run(debug=True)
